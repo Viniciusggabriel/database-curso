@@ -1,0 +1,13 @@
+SELECT  departamento, COUNT(*) AS "REGISTROS" FROM FUNCIONARIOS GROUP BY departamento;
+
+-- 1 Funcionarios que trabalham no departamento de filmes ou de roupas, pegar nomes
+SELECT nome from FUNCIONARIOS
+WHERE departamento = "Filmes" OR departamento = "Roupas";
+
+-- 2 Funcionarios que tabalhem no departamento de filmes ou de lar, pegar email	
+SELECT email from FUNCIONARIOS
+WHERE departamento = "Filmes" OR departamento = "Lar";
+
+-- 3 Funcionarios sexo masculino ou trabalham no jardim
+SELECT * FROM FUNCIONARIOS
+WHERE sexo = 'Masculino' OR departamento = "Jardim";

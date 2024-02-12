@@ -1,0 +1,18 @@
+#Trazer todos os dados;
+#Trazer o nome do livro e o nome da editora;
+#Trazer o nome do livro e a UF dos livros publicas por autores do sexo maculino;
+#Trazer o nome do livro e o número de páginas dos livros publicados por autores do sexo feminino;
+#Trazer os valores dos livros das editorias de São Paulo;
+#Trazer os dados dos autores do sexo masculino que tiveram livros publicados por São Paulo ou Rio de Janeiro (Desafio);
+
+#Nome do BD = "Livraria"
+	#Tabela = " Livros"
+	#colunas  
+		"NOME DO LIVRO"
+		"NOME DO AUTOR"
+		"SEXO DO AUTOR"
+		"NUMERO DE PAGINAS"
+		"NOME DA EDITORA"
+		"VALOR DO LIVRO"
+		"ESTADO (UF) DA EDITORA"
+		"ANO PUBLICACAO"
