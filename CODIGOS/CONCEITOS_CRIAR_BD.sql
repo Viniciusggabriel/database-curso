@@ -1,4 +1,4 @@
--- Criando primeiro BD do curso, projeto de cadastro simples de cliente
+ Criando primeiro BD do curso, projeto de cadastro simples de cliente
 --	Entidade = tabela
 --	Campos = atributo
 --	ctrl + o = Organiza o BRmodelo
