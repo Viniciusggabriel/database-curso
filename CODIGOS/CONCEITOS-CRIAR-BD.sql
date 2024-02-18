@@ -121,7 +121,7 @@ WHERE nome LIKE 'João%';
 DELETE FROM cliente;
 
  -- Ver o que vai ser deletado antes de fazer
- SELECT * FROM cliente WHERE nome LIKE "Ana%" ;
+SELECT * FROM cliente WHERE nome LIKE "Ana%" ;
 SELECT COUNT(*) AS CLIENTE_COUNT FROM CLIENTE;
 
 -- DELETA O ITEM QUE SE PAREÇA COM Ana
