@@ -1,0 +1,83 @@
+INSERT INTO ALUNOS (
+    NUMERO,
+    NOME
+) VALUES (
+    1,
+    'João'
+),
+(
+10,
+    'Maria'
+),
+(
+10,
+    'Pedro'
+),
+(
+    4,
+    'Ana'
+),
+(
+   4,
+    'Luís'
+),
+(
+4,
+    'Mariana'
+),
+(
+4,
+    'Carlos'
+),
+(
+ 4,
+    'Sofia'
+),
+(
+    9,
+    'Ricardo'
+),
+(
+    10,
+    'Teresa'
+),
+(
+10,
+    'Miguel'
+),
+(
+    12,
+    'Catarina'
+),
+(
+    13,
+    'Daniel'
+),
+(
+    14,
+    'Andreia'
+),
+(
+    15,
+    'António'
+),
+(
+    16,
+    'Filipa'
+),
+(
+    17,
+    'José'
+),
+(
+    18,
+    'Inês'
+),
+(
+    19,
+    'Manuel'
+),
+(
+    20,
+    'Beatriz'
+);
