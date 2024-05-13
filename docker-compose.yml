@@ -1,0 +1,14 @@
+services:
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment: 
+      MYSQL_ROOT_PASSWORD: Senha
+      MYSQL_DATABASE: estudos
+      MYSQL_USER: user
+      MYSQL_PASSWORD: Senha
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+      
