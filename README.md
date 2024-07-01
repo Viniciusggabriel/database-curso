@@ -34,4 +34,8 @@ Curso de Banco de dados com mySql, Oracle, t-sql e plSql
 
 ## Programação dentro do banco de dados
 
-    1. Dentro do escopo de banco de dados existe a programação de banco de dados, que conecta direto do view para o banco de dados, porem serve somente para pequenas validações, a partir do momento que se trata com grandes conjuntos de dados essa arquitetura se torna perigosa
+    Dentro do escopo de banco de dados existe a programação de banco de dados, que conecta direto do view para o banco de dados, porem serve somente para pequenas validações, a partir do momento que se trata com grandes conjuntos de dados essa arquitetura se torna perigos.
+
+## Modulo extra temporário de oracle 
+
+  ![Link para o oracle]()

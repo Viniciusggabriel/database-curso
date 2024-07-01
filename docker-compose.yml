@@ -1,8 +1,9 @@
 services:
+  # MYSQL database
   mysql:
     image: mysql:latest
     restart: always
-    environment: 
+    environment:
       MYSQL_ROOT_PASSWORD: Senha
       MYSQL_DATABASE: estudos
       MYSQL_USER: user
@@ -11,4 +12,3 @@ services:
       - 3306:3306
     expose:
       - 3306
-      

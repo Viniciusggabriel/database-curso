@@ -57,8 +57,3 @@ from
 where 
 	month(data_venda) = 2
 	and valor_venda > (select avg(valor_venda) from vendedor_vendeu_menos where month(data_venda) = 2);
-
-
-
-	
-

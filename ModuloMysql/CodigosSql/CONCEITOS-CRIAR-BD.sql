@@ -1,4 +1,4 @@
-CRIANDO PRIMEIRO BD DO CURSO, PROJETO DE CADASTRO SIMPLES DE CLIENTE
+C     RIANDO PRIMEIRO BD DO CURSO, PROJETO DE CADASTRO SIMPLES DE CLIENTE
 
 --	Entidade = tabela
 --	Campos = atributo
@@ -259,3 +259,66 @@ DELETE FROM CLIENTE
 WHERE
 	NOME LIKE 'Lucas'
 	AND EMAIL = 'teste@gmail.com';
+
+-- NOTE: Cursores em sql
+create table vendedores (
+	id_vendedor int primary key auto_increment,
+	nome VARCHAR(50) not null,
+	janeiro int,
+	fevereiro int,
+	março int
+);
+
+insert into vendedores (nome, janeiro, fevereiro, março) values ('João', 1000, 2000, 3000);
+insert into vendedores (nome, janeiro, fevereiro, março) values ('Maria', 1000, 2000, 3000);
+insert into vendedores (nome, janeiro, fevereiro, março) values ('Pedro', 1000, 2000, 3000);
+insert into vendedores (nome, janeiro, fevereiro, março) values ('José', 1000, 2000, 3000);
+
+create table vendedores_total (
+	id_vendedor int primary key auto_increment,
+	nome VARCHAR(50) not null,
+	janeiro int,
+	fevereiro int,
+	março int,
+	total int,
+	media int
+);
+
+
+delimiter $
+
+create procedure inserir_dados_vendedor() 
+	begin
+		-- Declaração de variáveis
+		declare fim int default 0;
+		declare v_nome varchar(50);
+		declare v_jan, v_fev, v_mar, v_total, v_media int;
+
+		-- Cursor para percorrer os registros da tabela vendedores
+		declare registros cursor for 
+			select nome, janeiro, fevereiro, março from vendedores;
+
+		-- Handler para o fim do cursor
+		declare continue handler for not found set fim = 1;
+
+		open registros;
+
+		-- Loop para processar cada registro
+		repeat
+			fetch registros into v_nome, v_jan, v_fev, v_mar;
+			if not fim then 
+				set v_total = v_jan + v_fev + v_mar;
+				set v_media = v_total / 3;
+
+				insert into vendedores_total (nome, janeiro, fevereiro, março, total, media) 
+				values (v_nome, v_jan, v_fev, v_mar, v_total, v_media);
+			end if;
+		until fim end repeat;
+
+		close registros;
+	end 
+	$
+
+delimiter ;
+
+call inserir_dados_vendedor();
