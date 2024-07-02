@@ -142,3 +142,20 @@ Streams pool é a área que armazena serviço de mensageira e replicação de da
 - **MMON**: Associado ao AWEiter. Captura as estatísticas do banco;
 - **MMNL**: Grava as estatísticas do banco ASH e parte do AWR em disco;
 - **RECO**: Recupera ou finaliza as falhas de transações.
+
+# Docker
+
+ Os dados para poder acessar o oracle no docker são 
+
+ - Usuário: sys
+ - Senha: A senha setada no compose
+ - Atribuição: SYSDBA
+ - Tipo de conexão: Básico
+
+Ao executar o docker compose up -d faça isso para obter o nome do serviço
+
+- `docker exec -it oracle-db-free bash`
+- `sqlplus / as sysdba`
+- `SHOW PARAMETER service_names`
+
+E pegue o valor para o service name, para realizar a conexão ao BD
