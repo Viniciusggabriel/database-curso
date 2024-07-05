@@ -148,7 +148,7 @@ Streams pool é a área que armazena serviço de mensageira e replicação de da
  Os dados para poder acessar o oracle no docker são 
 
  - Usuário: sys
- - Senha: A senha setada no compose
+ - Senha: A senha inserida no docker compose
  - Atribuição: SYSDBA
  - Tipo de conexão: Básico
 
