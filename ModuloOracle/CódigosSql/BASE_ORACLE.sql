@@ -70,4 +70,58 @@ GRANT CREATE TABLE TO C##VINICIUS;
 
 -- Altera minha senha de usuário
 ALTER USER C##VINICIUS IDENTIFIED BY VINICIUS;
+
 -- NOTE: para ver mais https://www.devmedia.com.br/criando-usuarios-e-liberando-privilegios-e-atribuicoes-no-oracle/26414
+
+-- NOTE: Criar e verificar o nome das tablespace e dos nomes dos arquivos
+CREATE TABLESPACE TABLESPACE_TESTE
+    DATAFILE '/opt/oracle/oradata/FREE/tablespace_teste_data.dbf' SIZE 100m
+    AUTOEXTEND ON NEXT 100M MAXSIZE 4096M;
+
+SELECT
+    DDF.TABLESPACE_NAME,
+    DDF.FILE_NAME,
+    ((DDF.BYTES/ 1024)/1024) -- Tamnaho em MB
+FROM
+    DBA_DATA_FILES DDF;
+
+-- NOTE: Criando sequence
+-- Uma sequence no Oracle é um objeto de banco de dados que gera uma sequência de números únicos e incrementais. Ela é amplamente utilizada para gerar valores de chave primária para tabelas, garantindo a unicidade e a integridade dos dados. Diferentemente de outros sistemas de gerenciamento de banco de dados, no Oracle, uma sequence pode ser compartilhada por várias tabelas em todo o banco de dados, tornando-a uma solução mais flexível e escalável para a geração de valores únicos.
+
+-- Começa em 100 e incrementa de 10 em 10
+CREATE SEQUENCE SQ_GERAL START WITH 100 INCREMENT BY 10;
+
+-- Tabela para referencia
+CREATE TABLE FUNCIONARIOS (
+    ID_FUNCIONARIO INT PRIMARY KEY,
+    DS_NOME_FUNCIONARIO VARCHAR2(30) -- A diferença do varchar para o varchar2 é que um é só até 255 já o outro ate 4000
+) TABLESPACE TABLESPACE_TESTE;
+
+-- Inserindo os dados e verificando se os dados da sequence estão corretos
+INSERT INTO FUNCIONARIOS (
+    ID_FUNCIONARIO,
+    DS_NOME_FUNCIONARIO
+) VALUES (
+    SQ_GERAL.NEXTVAL,
+    'Vinícius'
+);
+
+INSERT INTO FUNCIONARIOS (
+    ID_FUNCIONARIO,
+    DS_NOME_FUNCIONARIO
+) VALUES (
+    SQ_GERAL.NEXTVAL,
+    'Vinícius1'
+);
+
+SELECT
+    *
+FROM
+    FUNCIONARIOS;
+
+-- NOTE: Desativando uma tablespace e trocando ponteiro da tablespace
+ALTER TABLESPACE TABLESPACE_TESTE OFFLINE;
+
+-- cp opt/oracle/oradata/FREE/tablespace_teste_data.dbf tmp/tablespace_teste_data.dbf comando para teste 
+ALTER TABLESPACE tablespace_teste RENAME DATAFILE '/opt/oracle/oradata/FREE/tablespace_teste_data.dbf' TO '/tmp/tablespace_teste_data.dbf'
+;
