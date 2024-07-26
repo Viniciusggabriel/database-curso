@@ -19,3 +19,5 @@ Para criar um usuário dentro do SQLServer é necessário uma senha robusta que 
     - Primary: Contém informações de inicialização do banco de dados e aponta para os outros arquivos no banco de dados. Todo banco de dados possui um arquivo de dados primário. A extensão de nome de arquivo indicada para arquivos de dados primários é .mdf.
     - Secondary: Arquivos de dados opcionais definidos pelo usuário. Os dados podem ser distribuídos em vários discos, colocando cada arquivo em uma unidade de disco diferente. A extensão de nome de arquivo indicada para arquivos de dados secundários é .ndf.
     - Transations Logs: O log contém informações usadas para recuperar o banco de dados. Deve haver, no mínimo, um arquivo de log para cada banco de dados. A extensão de nome de arquivo indicada para arquivos de transação é .ldf.
+
+    

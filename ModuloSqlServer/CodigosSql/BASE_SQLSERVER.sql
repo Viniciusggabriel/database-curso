@@ -1,3 +1,9 @@
+-- ! Colocando o banco de português
+SET LANGUAGE Portuguese;
+
+select *
+from sys.syslanguages;
+
 -- ! No SQLServer a senha do usuário não poder ter o nome do usuário e tem que ter numeros e caracteres especiais
 CREATE LOGIN Vinicius   
     WITH PASSWORD = 'Gabriel1234!',
@@ -8,6 +14,7 @@ CREATE USER Vinicius FOR LOGIN Vinicius;
 GO
 
 CREATE DATABASE ESTUDOS;
+GO
 
 SELECT *
 FROM sys.database_principals;
@@ -140,4 +147,67 @@ INSERT INTO ENDERECO
     (DS_BAIRRO, DS_UF, FK_ID_ALUNO)
 VALUES
     ('BAIRRO06', 'GO', 11)
+GO
+
+-- Datas em sql server, retorna quantos anos a pessoa tem, o primeiro parametro do DATEDIFF serve para ver qual valor será capturado, segundo é o de onde vai vim e o terciero é a lógica
+SELECT AL.DS_NOME AS NOME, (DATEDIFF(DAY, AL.DS_NASCIMENTO, GETDATE())/365) AS IDADE
+FROM ALUNO AL;
+GO
+
+-- DATENAME trás o dia com nome
+SELECT AL.DS_NOME AS NOME, DATENAME(WEEKDAY, AL.DS_NASCIMENTO) AS NOME_DATA
+FROM ALUNO
+AL;
+GO
+
+-- ! Conversão de dados em SQL server
+SELECT CAST('1' AS INT) + CAST('1' AS INT);
+GO
+
+-- CHARINDEX ele busca a palava em cada registro, no caso vai ver onde tem A em cada registro, se passar um terceiro parametro ele pula caracteres 
+SELECT AL.DS_NOME AS NOME, CHARINDEX('A', AL.DS_NOME) AS 'INDEX'
+FROM ALUNO AL;
+
+-- ! Bulk Insert atrasves de um arquivo no caso o CONTAS.txt
+USE ESTUDOS
+GO
+
+CREATE TABLE LANCAMENTO_CONTABIL
+(
+    CONTA INT,
+    VALOR INT,
+    DEB_CRED CHAR(1)
+);
+GO
+
+-- cd tmp; touch CONTAS.txt; cat > CONTAS.txt; ctrl + d
+-- Comandos para inserir arquivos dentro do container, essa foram de insert em um container é inultil
+
+BULK INSERT LANCAMENTO_CONTABIL
+FROM '\tmp\CONTAS.txt' WITH (
+    FIRSTROW  = 2,
+    DATAFILETYPE = 'char',
+    FIELDTERMINATOR = '\t', -- \t é delimitador tab
+    ROWTERMINATOR = '\n'
+)
+GO
+
+-- !!!! \t e \n é como a tabela asc interpreta comandos tipo tab e \n
+
+
+-- Exercicio
+
+SELECT LC.CONTA, LC.VALOR, CHARINDEX('D', LC.DEB_CRED) AS DEBITO , CHARINDEX('C', LC.DEB_CRED) AS CREDITO, CHARINDEX('D', LC.DEB_CRED) * 2 -1 AS MULTIPLICADOR
+FROM LANCAMENTO_CONTABIL LC;
+GO
+
+SELECT LC.CONTA, LC.VALOR, LC.DEB_CRED
+FROM LANCAMENTO_CONTABIL LC
+WHERE LC.CONTA = 4;
+GO
+
+SELECT LC.CONTA, SUM(LC.VALOR * (CHARINDEX('D', LC.DEB_CRED) * 2 -1 )) AS SALDO, 'C' AS MODEL
+FROM LANCAMENTO_CONTABIL LC
+WHERE LC.CONTA = 1 AND LC.DEB_CRED = 'C'
+GROUP BY LC.CONTA;
 GO
