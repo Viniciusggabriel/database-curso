@@ -522,3 +522,55 @@ BEGIN
     PRINT 'QUANTIDADE DE CARROS DA FORD: ' + CONVERT(CHAR, @V_COUNT_FIAT)
 END
 GO
+
+-- ! IF e ELSE em TSql
+DECLARE 
+    @NUMERO INT =4
+BEGIN
+    IF @NUMERO = 5
+        PRINT 'NUMERO É 5'
+    ELSE 
+        PRINT 'VALOR NÃO É 5'
+END
+GO
+
+-- ? Switch case, nesse caso o case não é se enquadra como programação
+BEGIN
+    SELECT
+        CASE 
+        WHEN CR.FABRICANTE = 'FIAT' THEN 'FAIXA 1'
+        WHEN CR.FABRICANTE = 'CHEVROLET' THEN 'FAIXA 2'
+        ELSE 'OUTRAS FAIXAS' -- Sempre deve terminar com else
+    END
+    AS "INFORMAÇÕES",
+        CR.FABRICANTE
+    FROM CARROS CR
+END 
+GO
+
+-- criando procedure com if e else 
+CREATE PROC VERIFICA_NUMERO
+    @NUMERO INT
+AS
+BEGIN
+    IF @NUMERO = 5
+        PRINT 'NUMERO É 5'
+    ELSE 
+        PRINT 'VALOR NÃO É 5'
+END
+GO
+
+EXEC VERIFICA_NUMERO 5
+GO
+
+-- ! Entendendo loops em Tsql
+DECLARE 
+    @I INT = 1
+BEGIN
+    WHILE (@I < 15)
+    BEGIN
+        PRINT 'PÃO'
+        SET @I = @I + 1
+    END
+END 
+GO
